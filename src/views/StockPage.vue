@@ -113,7 +113,53 @@ export default {
             this.chartInstance.setOption(dataOption)
         },
         screenAdapter(){
-            const adapterOption = {}
+            const titleFontSize = this.$refs.stock_ref.offsetWidth/100*3.6
+            const innerRadius = titleFontSize *2
+            const outterRadius = innerRadius*1.125
+            const adapterOption = {
+                title:{
+                    textStyle:{
+                        fontSize:titleFontSize
+                    }
+                },
+                series:[
+                    {
+                        type:'pie',
+                        radius:[innerRadius,outterRadius],
+                        label:{
+                            fontSize:titleFontSize/2
+                        }
+                    },
+                    {
+                        type:'pie',
+                        radius:[innerRadius,outterRadius],
+                        label:{
+                            fontSize:titleFontSize/2
+                        }
+                    },
+                    {
+                        type:'pie',
+                        radius:[innerRadius,outterRadius],
+                        label:{
+                            fontSize:titleFontSize/2
+                        }
+                    },
+                    {
+                        type:'pie',
+                        radius:[innerRadius,outterRadius],
+                        label:{
+                            fontSize:titleFontSize/2
+                        }
+                    },
+                    {
+                        type:'pie',
+                        radius:[innerRadius,outterRadius],
+                        label:{
+                            fontSize:titleFontSize/2
+                        }
+                    }
+                ]
+            }
             this.chartInstance.setOption(adapterOption)
             this.chartInstance.resize()
         },
