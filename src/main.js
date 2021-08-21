@@ -3,9 +3,13 @@ import App from './App.vue'
 import router from './router'
 // 引入字体文件
 import './assets/font/iconfont.css'
-
 import './assets/css/global.less'
 import axios from 'axios'
+import SocketService from '@/utils/socket_service'
+// 对服务端进行websocket的连接
+SocketService.Instance.connect()
+// 把Instance挂载到Vue原型之上
+Vue.prototype.$socket = SocketService.Instance
 //请求基本配置
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api'
 //将axios挂载到Vue的原型上

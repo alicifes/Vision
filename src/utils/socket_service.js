@@ -56,12 +56,14 @@ export default class SocketService {
       // 真正服务端发送过来的原始数据时在msg中的data字段
       // console.log(msg.data)
       const recvData = JSON.parse(msg.data)
+      // 前端服务器发出的标识
       const socketType = recvData.socketType
       // 判断回调函数是否存在
       if (this.callBackMapping[socketType]) {
         const action = recvData.action
         if (action === 'getData') {
           const realData = JSON.parse(recvData.data)
+          // 当传入数据之后会调用函数,调用当前的this以及realdata
           this.callBackMapping[socketType].call(this, realData)
         } else if (action === 'fullScreen') {
           this.callBackMapping[socketType].call(this, recvData)
@@ -89,6 +91,7 @@ export default class SocketService {
       this.sendRetryCount = 0
       this.ws.send(JSON.stringify(data))
     } else {
+      // 设置延迟的操作,重新发送
       this.sendRetryCount++
       setTimeout(() => {
         this.send(data)
